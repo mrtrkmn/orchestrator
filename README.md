@@ -168,6 +168,8 @@ orchestrator/
 
 - **Author**: [Ahmet Türkmen](https://www.linkedin.com/in/mrturkmen/) · [GitHub](https://github.com/mrtrkmn)
 - **Talk**: Gophers İstanbul 2026 — *"Orchestrating a Virtual Hub in Go"*
+- **[📊 Presentation Slides](https://mrturkmen.com/talks/orchestrator.html)**
+- **[📝 Blog Post](https://mrturkmen.com/posts/orchestrating-virtual-hub-in-go/)**
 
 ## License
 

@@ -1,0 +1,7 @@
+.DS_Store
+images/*.qcow2
+images/*.iso
+cloud-init/cloud-init.iso
+wg-client-*.conf
+orch-state.json
+orchestrator

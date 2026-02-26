@@ -1,0 +1,36 @@
+#cloud-config
+# Cloud-init configuration for Debian VM
+users:
+  - name: debian
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    # Password: debian (hashed with mkpasswd --method=SHA-512)
+    passwd: $6$rounds=4096$saltsaltsalt$6F.KFjCVyHjGPqsJVBLp6gjLhQ7KqnPqzCQQpjQEXxWvEwS5KpMNJN4oKe2oLPKqCzUE/8VNl8kLvmQzPHPqh0
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... # Add your SSH key here if needed
+
+# Enable password authentication for SSH
+ssh_pwauth: true
+
+# Set root password (optional, not recommended)
+chpasswd:
+  list: |
+    root:root
+  expire: false
+
+# Run commands on first boot
+runcmd:
+  - systemctl enable ssh
+  - systemctl start ssh
+
+## Networking: generic DHCP for any 'en*' interface (Debian)
+network:
+  version: 2
+  ethernets:
+    all-en:
+      match:
+        name: "en*"
+      dhcp4: true
+      dhcp6: false
+      optional: true

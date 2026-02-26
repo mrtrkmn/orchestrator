@@ -1,0 +1,33 @@
+network_name: demo-net
+subnet: 172.19.5.0/24
+network_type: bridge
+# attach_to: existing-network-name
+
+containers:
+  - name: web-demo
+    image: nginx:alpine
+    label: demo.orch
+    ip: 172.19.5.10
+
+  - name: whoami
+    image: containous/whoami:latest
+    label: demo.orch
+    ip: 172.19.5.11
+
+vms:
+  - name: demo-vm
+    image: /home/ubuntu/projects/orchestrator/images/debian-12.qcow2
+    memory_mb: 1024
+    vcpus: 2
+    packages:
+      - curl
+      - wget
+      - vim
+      - htop
+      - net-tools
+      - nmap
+
+wireguard:
+  enabled: true
+  peer_name: demo-client
+  address: 10.10.0.2/24

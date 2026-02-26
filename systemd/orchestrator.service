@@ -1,0 +1,14 @@
+[Unit]
+Description=Orchestrator Service
+After=network.target docker.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/orchestrator
+ExecStart=/opt/orchestrator/orchestrator up
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

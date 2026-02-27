@@ -5,26 +5,27 @@
 
 A single Go binary that provisions Docker containers, libvirt/KVM virtual machines, networking (DHCP + DNS), and WireGuard VPN — all from one YAML file. Built as a real-world showcase of Go's strengths in infrastructure tooling.
 
-```
-┌─── Sunucu ──────────────────────────────────────────────────────┐
-│                                                                 │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐   ┌──────────────┐  │
-│   │  nginx   │  │  whoami  │  │ DHCP/DNS │   │  Debian VM   │  │
-│   │ :alpine  │  │  :latest │  │ container│   │  cloud-init  │  │
-│   │ .5.10    │  │ .5.11    │  │ .5.2/.3  │   │  1024MB RAM  │  │
-│   └────┬─────┘  └────┬─────┘  └────┬─────┘   └──────┬───────┘  │
-│        └──────────────┴─────────────┴────────────────┘          │
-│              Docker Bridge Ağı: 172.19.5.0/24                   │
-│        ┌──────────────────────┐                                 │
-│        │  WireGuard VPN       │                                 │
-│        │  10.10.0.0/24        │                                 │
-│        └────────┬─────────────┘                                 │
-└─────────────────┼───────────────────────────────────────────────┘
-                  │
-            ┌─────┴─────┐
-            │  Remote   │
-            │  Client   │
-            └───────────┘
+```mermaid
+graph TB
+    subgraph Server["🖥️ Host Server"]
+        subgraph Network["🌐 Docker Bridge Network · 172.19.5.0/24"]
+            direction LR
+            nginx["🐳 nginx:alpine<br/>172.19.5.10"]
+            whoami["🐳 whoami:latest<br/>172.19.5.11"]
+            dhcpdns["🐳 DHCP / DNS<br/>172.19.5.2 / .3"]
+            vm["💻 Debian VM<br/>cloud-init · 1024 MB"]
+        end
+        wg["🔒 WireGuard VPN<br/>10.10.0.0/24"]
+    end
+
+    client["📱 Remote Client"]
+
+    wg -. "encrypted tunnel" .-> client
+
+    style Server fill:#f0f4ff,stroke:#4a6fa5,stroke-width:2px
+    style Network fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    style wg fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style client fill:#fce4ec,stroke:#c62828,stroke-width:2px
 ```
 
 ---

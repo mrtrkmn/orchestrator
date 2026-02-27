@@ -5,27 +5,10 @@
 
 A single Go binary that provisions Docker containers, libvirt/KVM virtual machines, networking (DHCP + DNS), and WireGuard VPN — all from one YAML file. Built as a real-world showcase of Go's strengths in infrastructure tooling.
 
-```
-┌─── Sunucu ──────────────────────────────────────────────────────┐
-│                                                                 │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐   ┌──────────────┐  │
-│   │  nginx   │  │  whoami  │  │ DHCP/DNS │   │  Debian VM   │  │
-│   │ :alpine  │  │  :latest │  │ container│   │  cloud-init  │  │
-│   │ .5.10    │  │ .5.11    │  │ .5.2/.3  │   │  1024MB RAM  │  │
-│   └────┬─────┘  └────┬─────┘  └────┬─────┘   └──────┬───────┘  │
-│        └──────────────┴─────────────┴────────────────┘          │
-│              Docker Bridge Ağı: 172.19.5.0/24                   │
-│        ┌──────────────────────┐                                 │
-│        │  WireGuard VPN       │                                 │
-│        │  10.10.0.0/24        │                                 │
-│        └────────┬─────────────┘                                 │
-└─────────────────┼───────────────────────────────────────────────┘
-                  │
-            ┌─────┴─────┐
-            │  Remote   │
-            │  Client   │
-            └───────────┘
-```
+
+<img width="936" height="518" alt="General Overview" src="https://github.com/user-attachments/assets/d1d40959-5bd8-44ce-89c0-d0b2a9acc67c" />
+
+
 
 ---
 
@@ -168,7 +151,8 @@ orchestrator/
 
 - **Author**: [Ahmet Türkmen](https://www.linkedin.com/in/mrturkmen/) · [GitHub](https://github.com/mrtrkmn)
 - **Talk**: Gophers İstanbul 2026 — *"Orchestrating a Virtual Hub in Go"*
-- **[📊 Presentation Slides](https://mrturkmen.com/talks/orchestrator.html)**
+- **[📊 Presentation Slides-ENGLISH](https://mrturkmen.com/talks/orchestrator_en.html)**
+- **[📊 Presentation Slides-TURKISH](https://mrturkmen.com/talks/orchestrator.html)**
 - **[📝 Blog Post](https://mrturkmen.com/posts/orchestrating-virtual-hub-in-go/)**
 
 ## License
